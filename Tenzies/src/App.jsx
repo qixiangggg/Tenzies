@@ -4,6 +4,9 @@ import { useState } from "react"
 export default function App(){
   const [diceNumbers, setDiceNumbers] = useState(generateAllNewDice())
 
+  function rollDice(){
+    setDiceNumbers(generateAllNewDice())
+  }
   function generateAllNewDice(){
         const randomNumbers = []
 
@@ -18,6 +21,7 @@ export default function App(){
       <div className="dice-container">
         {diceNumbers.map((diceNumber) => <Die value={diceNumber}/>)}
       </div>
+      <button className="roll-dice" onClick={rollDice}>Roll</button>
     </main>
   )
 }

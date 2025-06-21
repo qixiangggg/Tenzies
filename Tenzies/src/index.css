@@ -61,3 +61,7 @@ button.roll-dice{
   border: none;
   font-size: 16px;
 }
+
+button.isHeld{
+  background-color: #59E391
+}

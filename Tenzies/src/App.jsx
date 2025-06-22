@@ -4,7 +4,7 @@ import { nanoid } from "nanoid"
 import { useWindowSize } from "react-use"
 import Confetti from "react-confetti"
 export default function App(){
-  const [dice, setDice] = useState(generateAllNewDice())
+  const [dice, setDice] = useState(() => generateAllNewDice())
   const { width, height } = useWindowSize()
   let gameWon = 
     dice.every(die => die.isHeld) && 

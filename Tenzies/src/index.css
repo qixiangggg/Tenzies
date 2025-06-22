@@ -4,14 +4,14 @@
 
 body {
   font-family: Karla, sans-serif;
-    margin: 0;
-    background-color: #0B2434;
-    display: flex;
-    height: 100vh;
-    padding: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  background-color: #0B2434;
+  display: flex;
+  height: 100vh;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 div#root{
@@ -28,6 +28,7 @@ main{
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .dice-container{
@@ -64,4 +65,17 @@ button.roll-dice{
 
 button.isHeld{
   background-color: #59E391
+}
+
+.title{
+  font-size: 40px;
+  margin: 0px;
+}
+
+.instructions{
+  font-family: Karla, sans-serif;
+  font-weight: 400;
+  margin-top: 0;
+  text-align: center;
+  padding: 0px 25px 0px 25px;
 }

@@ -34,6 +34,11 @@ export default function App(){
     setDice(prev => prev.map(prevDie =>
       prevDie.id === id ? {...prevDie, isHeld: !prevDie.isHeld}: prevDie))
   }  
+
+  function newGame(){
+    setDice(generateAllNewDice())
+  }
+  
   return (
     <main>
       <h1 className="title">Tenzies</h1>
@@ -41,7 +46,7 @@ export default function App(){
       <div className="dice-container">
         {dice.map((die) => <Die key={die.id} id={die.id}value={die.value} isHeld={die.isHeld} hold={hold}/> )}
       </div>
-      <button className="roll-dice" onClick={rollDice}>
+      <button className="roll-dice" onClick={gameWon? newGame : rollDice}>
         {gameWon? "New Game": "Roll"}
       </button>
       {gameWon && <Confetti width={width} height={height}/>}

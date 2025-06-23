@@ -1,11 +1,12 @@
 import Die from "./components/Die"
-import { useState } from "react"
+import { useState,useRef,useEffect } from "react"
 import { nanoid } from "nanoid"
 import { useWindowSize } from "react-use"
 import Confetti from "react-confetti"
 export default function App(){
   const [dice, setDice] = useState(() => generateAllNewDice())
   const { width, height } = useWindowSize()
+  const rollButton = useRef(null)
   let gameWon = 
     dice.every(die => die.isHeld) && 
     dice.every(die => die.value === dice[0].value)
@@ -38,6 +39,12 @@ export default function App(){
   function newGame(){
     setDice(generateAllNewDice())
   }
+
+  useEffect(() => {
+    if (gameWon){
+      rollButton.current.focus()
+    }
+  },[gameWon])
   
   return (
     <main>
@@ -46,10 +53,13 @@ export default function App(){
       <div className="dice-container">
         {dice.map((die) => <Die key={die.id} id={die.id}value={die.value} isHeld={die.isHeld} hold={hold}/> )}
       </div>
-      <button className="roll-dice" onClick={gameWon? newGame : rollDice}>
+      <button className="roll-dice" onClick={gameWon? newGame : rollDice} ref={rollButton}>
         {gameWon? "New Game": "Roll"}
       </button>
       {gameWon && <Confetti width={width} height={height}/>}
+      <div aria-live="polite" className="sr-only">
+        {gameWon && <p>Congratulations! You won! Press "New Game" to start again.</p>}
+      </div>
     </main>
   )
 }
